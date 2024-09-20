@@ -1,5 +1,5 @@
 {% set name = "opentelemetry-api" %}
-{% set version = "1.27.0" %}
+{% set version = "1.26.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_api-{{ version }}.tar.gz
-  sha256: ed673583eaa5f81b5ce5e86ef7cdaf622f88ef65f0b9aab40b843dcae5bef342
+  sha256: 2bd639e4bed5b18486fef0b5a520aaffde5a18fc225e808a1ac4df363f43a1ce
 
 build:
   number: 0
@@ -19,10 +19,10 @@ requirements:
     - pip
     - python >=3.8
     - hatchling
-    - setuptools >=16.0
   run:
     - deprecated >=1.2.6
     - python >=3.8
+    - setuptools >=16.0
     #  This should be able to be removed after 3.12 is released if there is a reliable API in importlib.metadata
     - importlib-metadata >=6.0.0,<7.1.0
 
