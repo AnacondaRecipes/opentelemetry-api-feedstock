@@ -19,6 +19,7 @@ requirements:
     - pip
     - python >=3.8
     - hatchling
+    - wheel
   run:
     - deprecated >=1.2.6
     - python >=3.8
