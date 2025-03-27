@@ -1,5 +1,5 @@
 {% set name = "opentelemetry-api" %}
-{% set version = "1.26.0" %}
+{% set version = "1.30.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_api-{{ version }}.tar.gz
-  sha256: 2bd639e4bed5b18486fef0b5a520aaffde5a18fc225e808a1ac4df363f43a1ce
   patches:
     # added to avoid pip._internal.exceptions.MetadataGenerationFailed: metadata generation failed
     - patches/0000-fix-classifier-clash-in-pyproject.patch
+  sha256: 375893400c1435bf623f7dfb3bcd44825fe6b56c34d0667c542ea8257b1a1240
 
 build:
   number: 0
@@ -27,7 +27,7 @@ requirements:
     - hatchling
   run:
     - deprecated >=1.2.6
-    - importlib-metadata >=6.0,<=8.2.0
+    - importlib-metadata >=6.0,<=8.5.0
     - python
 
 test:
