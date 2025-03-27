@@ -7,9 +7,6 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_api-{{ version }}.tar.gz
-  patches:
-    # added to avoid pip._internal.exceptions.MetadataGenerationFailed: metadata generation failed
-    - patches/0000-fix-classifier-clash-in-pyproject.patch
   sha256: 375893400c1435bf623f7dfb3bcd44825fe6b56c34d0667c542ea8257b1a1240
 
 build:
@@ -18,9 +15,6 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
-  build:
-    - patch # [not win]
-    - m2-patch  # [win]
   host:
     - pip
     - python
