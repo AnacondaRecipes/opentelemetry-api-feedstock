@@ -1,6 +1,7 @@
 {% set name = "opentelemetry-api" %}
 {% set version = "1.31.1" %}
 
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -8,6 +9,7 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_api-{{ version }}.tar.gz
   sha256: 137ad4b64215f02b3000a0292e077641c8611aab636414632a9b9068593b7e91
+
 
 build:
   noarch: python
@@ -20,6 +22,8 @@ requirements:
     - pip
     - hatchling
   run:
+    - deprecated >=1.2.6
+    - importlib-metadata >=6.0,<=8.5.0
     - python
     - deprecated >=1.2.6
     #  This should be able to be removed after 3.12 is released if there is a reliable API in importlib.metadata
