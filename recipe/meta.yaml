@@ -1,28 +1,33 @@
 {% set name = "opentelemetry-api" %}
-{% set version = "1.30.0" %}
+{% set version = "1.31.1" %}
+
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_api-{{ version }}.tar.gz
-  sha256: 375893400c1435bf623f7dfb3bcd44825fe6b56c34d0667c542ea8257b1a1240
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/opentelemetry_api-{{ version }}.tar.gz
+  sha256: 137ad4b64215f02b3000a0292e077641c8611aab636414632a9b9068593b7e91
+
 
 build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
-  skip: true  # [py<38]
-  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   host:
-    - pip
     - python
+    - pip
     - hatchling
   run:
     - deprecated >=1.2.6
     - importlib-metadata >=6.0,<=8.5.0
     - python
+    - deprecated >=1.2.6
+    #  This should be able to be removed after 3.12 is released if there is a reliable API in importlib.metadata
+    - importlib-metadata <8.7.0,>=6.0
 
 test:
   imports:
@@ -32,24 +37,21 @@ test:
     - pip check
   requires:
     - pip
+    - python
 
 about:
-  summary: OpenTelemetry Python / API
   home: https://github.com/open-telemetry/opentelemetry-python/tree/master/opentelemetry-api
+  summary: OpenTelemetry Python API
   license: Apache-2.0
-  license_family: Apache
   license_file: LICENSE
-  doc_url: https://opentelemetry-python.readthedocs.io
-  dev_url: https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-api
-  description: |-
-    OpenTelemetry, also known as OTel for short, is a vendor-neutral open-source
-    Observability framework for instrumenting, generating, collecting, and exporting
-    telemetry data such as traces, metrics, logs. As an industry-standard
-    it is natively supported by a number of vendors.
 
 extra:
-  skip-lints:
-    - invalid_url
+  anaconda-services:
+    ref: https://anaconda.zendesk.com/agent/tickets/70829
+    reason: Dependency for chromadb
   recipe-maintainers:
+    - ianaobi
+  recipe-maintainers:
+    - rxm7706
     - mariusvniekerk
     - marcelotrevisani
