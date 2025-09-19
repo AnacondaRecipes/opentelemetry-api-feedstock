@@ -22,7 +22,7 @@ requirements:
   run:
     - python
     - typing-extensions >=4.5.0
-    - importlib-metadata >=6.0,<8.8.0 # [py<312]
+    - importlib-metadata >=6.0,<8.8.0
 
 # Unable to run the tests, opentelemetry-test-utils is not in the main channel.
 test:
