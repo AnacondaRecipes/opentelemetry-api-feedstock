@@ -1,18 +1,18 @@
 {% set name = "opentelemetry-api" %}
-{% set version = "1.40.0" %}
+{% set version = "1.43.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
-  sha256: 159be641c0b04d11e9ecd576906462773eb97ae1b657730f0ecf64d32071569f
+  sha256: 107d0d03857ea8fc7c5fcbbbd83f800c281f0d560553d61c1d675fccfd1761c1
 
 build:
   number: 0
-  skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -22,7 +22,6 @@ requirements:
   run:
     - python
     - typing-extensions >=4.5.0
-    - importlib-metadata >=6.0,<8.8.0
 
 # Unable to run the tests, opentelemetry-test-utils is not in the main channel.
 test:
